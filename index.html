@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitals Quiz</title>
+    <link rel="stylesheet" href=".//assets/css/style.css">
+</head>
+<body>
+    
+<header> 
+    <h1 id="quiz name">Quiz Capitals</h1>
+</header>
+</body>
+<div class="contentWrapper">
+ <div class="currentStatus">
+    <h2 id="score">Score</h2>
+    <h2 id="timer">Timer</h2>
+    <!-- scores & timer-->
+ </div>
+    <!--section 1 start a quiz -->
+ <div id="start">
+   <h3>Welcome to my quiz!</h3> 
+   <p>Try to answers following questions withing the time limit<br>
+      Keep in mind that incorrect answers will penalize your <br>
+       score/time by ten seconds!
+  </p>
+  <button id="start-quiz">Start Quiz</button>
+ </div>
+
+ <!--section 2 questionaire-->
+
+ <div id="questionnaire">
+    <p id="questions">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent</p>
+    <ul id="answers">
+        <!---this will be generated in java-->
+      <!-- <p id="select-answer">Answer 1</p>
+      <p id="select-answer">Answer 1</p>
+      <p id="select-answer">Answer 1</p>
+      <p id="select-answer">Answer 1</p> -->
+    </ul>
+ </div>
+
+ <!--section 3 final scores enter initials-->
+ <div>
+
+ </div>
+
+ <!--section 4 go back or clear high scores-->
+  <div id="finish">
+    <p id="high-scores">High scores</p>
+    <p>Your final score is<span id="your-score"></span></p>
+    <div id="end-quiz">
+     <input placeholder="Your initials" id="initials">
+     <button id="go-back">Go Back</button>
+     <button id="clear-scores">Clear high scores</button>
+    </div>
+  </div>
+</div>
+<script src=".//assets/java/script.js"></script>
+</body>
+
+</html>

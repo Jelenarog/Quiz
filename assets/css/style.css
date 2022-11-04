@@ -1,0 +1,87 @@
+* {
+    background-color: rgb(54, 52, 52);
+    color: rgb(194, 181, 179);
+  }
+header{
+    text-align: center;
+    border: 2px solid rgb(243, 236, 236);
+    height: fit-content;
+
+  }
+.contentWrapper{ /*not working*/
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(211, 202, 202);
+}
+ .currentStatus{
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    flex-direction: row;
+    border: 2px solid rgb(196, 187, 187);
+    height: 80%;
+ }
+
+
+ #questionnaire {
+    font-size: 30px;
+ display: none;/*changed from flex to work on start quiz*/
+ flex-direction: column;
+ padding: 5% 30%;
+ height: 600px;
+ text-align: center;
+ }
+ #answers{
+    display: flex;
+    flex-direction: column;
+    
+ }
+#questions{
+    border: 5px solid rgb(1, 5, 2);
+    border-radius: 25px;
+}
+#select-answer, #questions, #start-quiz {
+    border: 5px solid rgb(1, 5, 2);
+    color: black;
+    border-radius: 25px;
+    background-color: antiquewhite;
+   
+}
+
+/* TODOadd even listener to hide and display*/
+/*start the quiz window*/
+#start{
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 5% 30%;
+  height: 900px;
+  text-align: center;
+  } 
+
+/*start quiz button*/
+#start-quiz{
+  font-size: 40px;
+  padding: 5%;
+  margin: auto;
+  margin-bottom: 60%;
+}
+/*end quiz or go back*/
+#finish{
+  font-size: 50px;
+  display: none;
+  flex-direction: column;
+  padding:5% 30%;
+  height: 900px;
+  text-align: center;
+  justify-content: start;
+}
+button {
+  border: 5px solid rgb(1, 5, 2);
+  color: black;
+  border-radius: 25px;
+  background-color: antiquewhite;
+}
+#go-back, #clear-scores, #initials{
+  font-size:20px;
+}
