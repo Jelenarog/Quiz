@@ -81,6 +81,7 @@ button {
   color: black;
   border-radius: 25px;
   background-color: antiquewhite;
+  font-size: 20px;
 }
 #go-back, #clear-scores, #initials{
   font-size:20px;
