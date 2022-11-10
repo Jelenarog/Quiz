@@ -16,7 +16,7 @@ git clone git@github.com:Jelenarog/Quiz.git
 ---
 ## Links
 [Github Repository Link](https://github.com/Jelenarog/Quiz)<br/>
- [Deployed website]()<br/>
+ [Deployed website](https://jelenarog.github.io/Quiz/)<br/>
  [HTML code](.//assets/Images/HTML-code.png)<br/>
  [JavaScript](.//assets/Images/javaScript.png)
 
