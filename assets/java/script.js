@@ -5,185 +5,105 @@ var askQuestion = document.getElementById("questions");//questions
 var selectAnswer = document.getElementById("answers");
 var timerEl1 = document.getElementById('timer');
 var counter = 0; //counter variable to count questions we are on
-
-
-
-
-
+var scoreScreen = document.getElementById("finish");
+var score = document.getElementById('your-score');
+var initials = document.querySelector("#initials");
+var submitScore = document.querySelector("#save-score");
+var answerValidation; //variable where correct or incorrect answer validation is displayed to user
+var startOver=document.querySelector('go-back');
 //timer
 secondsLeft = 75;
 function setTime() {
     var timerInterval = setInterval(function() {
       timerEl1.textContent = "Time: " + secondsLeft;
       secondsLeft--;
-      
-  
-      if(secondsLeft === 0) {
-        // Stops execution of action at set interval
+      if(secondsLeft <= 0) {
+       
         clearInterval(timerInterval);
-       //show  result to submit
+        endQuiz();
       }
   
     }, 1000);//every 1000m miliseconds
   }
 
-
-//get random question
 var createQuestion = function(){
-    askQuestion.textContent=questionsAndAnswers[counter].question;//getting question using conter
-    for (let i = 0; i < questionsAndAnswers[counter].answer.length; i++) {
+    askQuestion.textContent=questionsAndAnswers[counter].question;//getting questions using counter
+    for (let i = 0; i < questionsAndAnswers[counter].answer.length; i++) {//for each question show answer choices
        var choices=document.createElement("li");
        choices.setAttribute("style", "color:white; list-style-type:none");
        choices.textContent=questionsAndAnswers[counter].answer[i];
-       console.log(questionsAndAnswers[counter].answer[i]);
        selectAnswer.appendChild(choices);
     }
     }
    var questionOption=function(event){
-    var target=event.target;
-    if(target.matches("li")){
+   var target=event.target;
+
+    if(counter == questionsAndAnswers.length-1){
+        endQuiz();
+    }
+    else 
+    if(target.matches("li")){//for each time user selects one of li elements(answer choices display if answer is correct or incorrect)
         if(target.textContent===questionsAndAnswers[counter].validAnswer){
-            console.log("correct");
+            answerValidation = document.createElement('p');
+            answerValidation.textContent = "Great job, you selected correct answer !";
+            questions.appendChild(answerValidation);
+            console.log(answerValidation);
         }
         else{
-            console.log("incorrect");
+            answerValidation = document.createElement('p');
+            answerValidation.textContent = "Wrong answer!";
+            questions.appendChild(answerValidation);
+            secondsLeft -=5; //if answer incorrect decrease timer for 5 seconds
         }
-    if(counter<questionsAndAnswers.length)
+    if(counter<questionsAndAnswers.length )//if there is more  questions available call the function to create question again
     {
-        counter++;
         selectAnswer.textContent="";
+        setTimeout(function(){
+            answerValidation.textContent="";
+        },1000);
+        counter++;//increment question
         createQuestion();
     }    
     }
    }
-
+   var endQuiz = function(){//whe game is done show end screen where user can see his final score 
+    //questions = questions.setAttribute('style', 'display:none;');
+    questions.setAttribute('style', 'display:none;');
+    scoreScreen = scoreScreen.setAttribute('style', 'display:flex;');
+    score.textContent="  " + secondsLeft;
+    saveScore();
+    startOver.addEventListener('click', startOver)//*********************** */
+   
+}
+   
+//store score
+    var saveScore=function(){
+    //localStorage.getItem("User Initials");
+    //localStorage.setItem("User Initials",initials.value);
+    var scoreResult = initials.value +" : " + secondsLeft;
+    //localStorage.setItem ("High-scores");
+    //localStorage.getItem("score");
+    //   TEST   localStorage.setItem("High-scores",scoreResult);
+    localStorage.setItem("highScores", JSON.stringify(scoreResult));
+    JSON.parse(localStorage.getItem("highScores"));
+}
+submitScore.addEventListener('click',saveScore)
 
 //we need start  game  //when users click on button start quiz function for game will initiate
 startQuiz.addEventListener("click", startGame)
 function startGame() {
-    console.log("started");
 setTime();
-start = start.setAttribute('style','display:none;');//hide start page
-questions = questions.setAttribute('style', 'display:flex');//show quiz section with questions and answers
+start.setAttribute('style','display:none;');//hide start page
+questions.setAttribute('style', 'display:flex');
 createQuestion();
 }
 
 questions.addEventListener("click",questionOption)
 
-
-//     var randomSelection = Math.floor(Math.random()*questionsAndAnswers.length);
-//     var randomQuestion = questionsAndAnswers[randomSelection];
-//      askQuestion.textContent= randomQuestion.question
-//    //for(let i = 0; i< questionsAndAnswers[randomSelection].answer.length; i++)
-//      var answerList = document.createElement('button');
-//     answerList.textContent = questionsAndAnswers[randomSelection].answer;
-//     //console.log(questionsAndAnswers[randomSelection].answer[i]);
-//     selectAnswer.appendChild(answerList);
-//     answerList.setAttribute('style', 'list-style-type:none');
-    
-
-//     console.log(questionsAndAnswers[randomSelection].answer);
-//     answerList.addEventListener('click', function() {
-//     questionsAndAnswers[randomSelection].answer === questionsAndAnswers[randomSelection].validAnswer
-    //console.log(questionsAndAnswers[randomSelection].validAnswer); this is a valid answer
-//     };
-
-//     if (questionsAndAnswers[randomSelection].answer === questionsAndAnswers[randomSelection].validAnswer)
-//     {   
-//        answerValidation = document.createElement('p');
-//        answerValidation.textContent = "Great job, you selected correct answer !";
-//        answers.appendChild(answerValidation);
-//        return;
-//      }
-//      else {
-//         answerValidation = document.createElement('p');
-//         answerValidation.textContent = "Wrong answer!";
-//         answers.appendChild(answerValidation);
-//         secondsLeft -=5; 
-       
-//         }  
-
-
-//     }
-//     showQuestion();  
-
-//     } 
-    
-//     // var selectAnswer = function(){
-//     //     if (questionsAndAnswers[randomSelection].answer[i] === questionsAndAnswers[randomSelection].validAnswer)
-//     //      {   var answerList = document.createElement('li');
-//     //           answerList.textContent = questionsAndAnswers[randomSelection].answer[i];
-//     //           answerValidation = document.createElement('p');
-//     //          answerValidation.textContent = "Great job, you selected correct answer !";
-//     //          answers.appendChild(answerValidation);
-               
-//     //      }
-//    // }
-    
-//     //var i=0;   
-//     //  while(i<questionsAndAnswers.length)
-    //     do{
-    //         var randomSelection = Math.floor(Math.random()*questionsAndAnswers.length);
-    //  var randomQuestion = questionsAndAnswers[randomSelection];
-    //         askQuestion.textContent= randomQuestion.question
-    //     }
-
-    // }
-
-    // var answerList = document.createElement('li');
-    //  answerList.textContent = "click-me";
-    // selectAnswer.appendChild(answerList);
-    // answerList.addEventListener("click",function(){
-    //     console.log(i);
-    //     i++;
-    // })
-
-//show offered answers
-   //for (let i = 0; i< questionsAndAnswers[randomSelection].answer.length; i++) {
-//    var answerList = document.createElement('li');
-//    answerList.textContent = questionsAndAnswers[randomSelection].answer[i];
-//    console.log(questionsAndAnswers[randomSelection].answer[i]);
-//    selectAnswer.appendChild(answerList);
-//    console.log(questionsAndAnswers[randomSelection].answer[i]);
-//    answerList.setAttribute('style', 'list-style-type:none');
-  // }
-//     console.log("This is the list of possible answers"+ j + questionsAndAnswers[randomSelection].answer[j]);
-//     console.log(questionsAndAnswers[randomSelection].validAnswer);
-//     //select correct or incorrect answer media query on click
-    //answerList.addEventListener('click', function() {
-    //     j=0;
-    //  if (questionsAndAnswers[randomSelection].answer[j] === questionsAndAnswers[randomSelection].validAnswer)
-    // {   
-    //      answerValidation = document.createElement('p');
-    //     answerValidation.textContent = "Great job, you selected correct answer !";
-    //     answers.appendChild(answerValidation);
-    //     i++
-    //  }
-
-   // );
-    
-
-//     else {
-//       answerValidation = document.createElement('p');
-//       answerValidation.textContent = "Wrong answer!";
-//        answers.appendChild(answerValidation);
-//         secondsLeft -=5; 
-//       i++
-//      }    
-//     });
-// }
-//}
-//} //}
-
- 
-
-//show score
-
-
-//show ending screen with final score, enter initials to store value using local storage
-//high store list
-//try again maun
-//ongoing score
+var startOver = function(){
+   
+//This part of the code has not been completed 
+} 
 
 //questions and answers
 var questionsAndAnswers = [
