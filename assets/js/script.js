@@ -11,19 +11,19 @@ var initials = document.querySelector("#initials");
 var submitScore = document.querySelector("#save-score");
 var answerValidation; //variable where correct or incorrect answer validation is displayed to user
 var startOver=document.querySelector('go-back');
+
 //timer
 secondsLeft = 75;
 function setTime() {
     var timerInterval = setInterval(function() {
       timerEl1.textContent = "Time: " + secondsLeft;
       secondsLeft--;
-      if(secondsLeft <= 0) {
-       
+      if(secondsLeft <= 0 ) {
         clearInterval(timerInterval);
         endQuiz();
       }
-  
-    }, 1000);//every 1000m miliseconds
+    }, 1000);//every 1000m milliseconds
+
   }
 
 var createQuestion = function(){
@@ -67,25 +67,19 @@ var createQuestion = function(){
     }
    }
    var endQuiz = function(){//whe game is done show end screen where user can see his final score 
-    //questions = questions.setAttribute('style', 'display:none;');
+    
     questions.setAttribute('style', 'display:none;');
     scoreScreen = scoreScreen.setAttribute('style', 'display:flex;');
     score.textContent="  " + secondsLeft;
     saveScore();
-    startOver.addEventListener('click', startOver)//*********************** */
-   
 }
    
 //store score
     var saveScore=function(){
-    //localStorage.getItem("User Initials");
-    //localStorage.setItem("User Initials",initials.value);
+        
     var scoreResult = initials.value +" : " + secondsLeft;
-    //localStorage.setItem ("High-scores");
-    //localStorage.getItem("score");
-    //   TEST   localStorage.setItem("High-scores",scoreResult);
     localStorage.setItem("highScores", JSON.stringify(scoreResult));
-    JSON.parse(localStorage.getItem("highScores"));
+   // JSON.parse(localStorage.getItem("highScores"));
 }
 submitScore.addEventListener('click',saveScore)
 
@@ -108,25 +102,25 @@ var startOver = function(){
 //questions and answers
 var questionsAndAnswers = [
     {
-        question:"What is Capital of Philippines", 
-        answer: ["Manila",  "New York", "Rabat", "Bratislava"],
-        validAnswer :"Manila",
+        question:"Which data type is used to create a variable that should store text?", 
+        answer: ["String",  "string", "myString", "Txt"],
+        validAnswer :"String",
     },
     {
-        question:"What is Capital of Bosnia", 
-        answer: ["Sarajevo","Denver", "Rabat", "Bratislava", ],
-        validAnswer :"Sarajevo",
+        question:"How do you create a variable with the numeric value 5?", 
+        answer: ["int x=5;","x=5", "inx x=5", "x=5", ],
+        validAnswer :"int x=5;",
     },      
     {
-            question:"What is Capital of Serbia", 
-            answer: ["Prague", "Belgrade", "Rabat", "Oslo",],
-            validAnswer :"Belgrade",
+            question:"Which method can be used to return a string in upper case letters?", 
+            answer: ["touppercase()", "upperCase()", "toUpperCase()", "tuc()",],
+            validAnswer :"toUpperCase()",
            
     }, 
     {
-            question:"What is Capital of Croatia", 
-            answer: [ "Trn", "New York", "Rabat", "Zagreb", ],
-            validAnswer :"Zagreb",
+            question:"To declare an array in Java, define the variable type with?", 
+            answer: [ "{}", "()", "[]","{[]}", ],
+            validAnswer :"[]",
            
     },
    
